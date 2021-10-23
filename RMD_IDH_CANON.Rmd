@@ -7,6 +7,7 @@ output: html_document
 
 
 ## IMPORTE Y REVISIÓN DE BASES DE DATOS
+### Agregando información relevante 
 
   1.- dataset1_distritos extraccion minera: Lista de distritos en los que se realizó algúna actividad de extracción minera.
   2.- dataset2_distritos mineria superficial: Lista de distritos que realizan minería superficial.
