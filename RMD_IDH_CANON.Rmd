@@ -15,6 +15,12 @@ output: html_document
 
 
 ```{r}
+library(readr)
+library(readxl)
+dataset1 <- read.csv(file="dataset1_distritos extraccion minera.csv", sep =";" , header = TRUE)
+
+View(dataset1)
+
 #Revisión de variables
   #1.- dataset1_distritos extraccion minera
 
