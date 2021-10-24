@@ -11,6 +11,7 @@ output: html_document
   1.- dataset1_distritos extraccion minera: Lista de distritos en los que se realizó algúna actividad de extracción minera.
   2.- dataset2_distritos mineria superficial: Lista de distritos que realizan minería superficial.
   3.- dataset3_distritos no mineria superficial: Lista de distritos que no realizan minería superficial.
+  
     *Fuente: IDH(PNUD) y transferencias de renta extractiva(MEF)
 
 
@@ -130,6 +131,7 @@ View(dataset3_VF)
 #CREANDO UNA NUEVA VARIABLE PARA CODIFICAR DEPARTAMENTOS POR REGIONES
 
 library(dplyr)
+
 #Dataset1
 table(dataset1_VF$REGION)
     
