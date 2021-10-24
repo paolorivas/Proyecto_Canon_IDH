@@ -16,113 +16,124 @@ output: html_document
 
 ```{r}
 library(readr)
-library(readxl)
+#Importar datos
+
 dataset1 <- read.csv(file="dataset1_distritos extraccion minera.csv", sep =";" , header = TRUE)
 
-View(dataset1)
+dataset2 <- read.csv(file="dataset2_distritos mineria superficial.csv", sep =";" , header = TRUE)
+
+dataset3 <- read.csv(file="dataset3_distritos no mineria superficial.csv", sep =";" , header = TRUE)
+
+
 
 #Revisión de variables
-  #1.- dataset1_distritos extraccion minera
+#1.- dataset1
 
-      str(dataset1_distritos.extraccion.minera)
-      summary(dataset1_distritos.extraccion.minera)
-      "Se identifica que hay 24 observaciones (distritos) que no cuentan con transferencias de canon minero"
+str(dataset1)
+summary(dataset1)
+"Se identifica que hay 24 observaciones (distritos) que no cuentan con transferencias de canon minero"
       
-      #Revisión de las obs que no cuentan con transferencias de canon minero.
+#Revisión de las obs que no cuentan con transferencias de canon minero.
           
-          #1.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
+#1.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
               
-                  dataset1_distritos.extraccion.minera_evidencia <- dataset1_distritos.extraccion.minera[is.na(dataset1_distritos.extraccion.minera$CANON.MINERO), ]
-                  View(dataset1_distritos.extraccion.minera_evidencia)
-                "La lista de distritos está disponible en dataset1_distritos.extraccion.minera_evidencia"
+dataset1_evidencia <- dataset1[is.na(dataset1$CANON.MINERO), ]
+View(dataset1_evidencia)
+"La lista de distritos está disponible en dataset1_distritos.extraccion.minera_evidencia"
                 
-          #1.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
+#1.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
                 
-                 dataset1_distritos.extraccion.minera_VF <- dataset1_distritos.extraccion.minera[!is.na(dataset1_distritos.extraccion.minera$CANON.MINERO),]
-                 View(dataset1_distritos.extraccion.minera_VF)
-                 summary(dataset1_distritos.extraccion.minera_VF)
+dataset1_VF <- dataset1[!is.na(dataset1$CANON.MINERO),]
+View(dataset1_VF)
+summary(dataset1_VF)
                  
-                #1.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
+#1.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
                  
-                        dim(dataset1_distritos.extraccion.minera)
-                        dim(dataset1_distritos.extraccion.minera_VF)
+dim(dataset1)
+dim(dataset1_VF)
   
                         
-   #2.- dataset2_distritos mineria superficial
+#2.- dataset2_distritos mineria superficial
                         
-      str(dataset2_distritos.mineria.superficial)
-        summary(dataset2_distritos.mineria.superficial)
-      "Se identifica que hay 3 observaciones (distritos) que no cuentan con transferencias de canon minero"
+str(dataset2)
+summary(dataset2)
+"Se identifica que hay 3 observaciones (distritos) que no cuentan con transferencias de canon minero"
       
-      #Revisión de las obs que no cuentan con transferencias de canon minero.
+#Revisión de las obs que no cuentan con transferencias de canon minero.
           
-          #2.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
+#2.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
               
-                  dataset2_distritos.mineria.superficial_evidencia <- dataset2_distritos.mineria.superficial[is.na(dataset2_distritos.mineria.superficial$CANON.MINERO), ]
-                  View(dataset2_distritos.mineria.superficial_evidencia)
-                "La lista de distritos está disponible en dataset2_distritos.mineria.superficial_evidencia"
+dataset2_evidencia <- dataset2[is.na(dataset2$CANON.MINERO), ]
+View(dataset2_evidencia)
+"La lista de distritos está disponible en dataset2_distritos.mineria.superficial_evidencia"
                 
-          #2.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
+#2.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
                 
-                 dataset2_distritos.mineria.superficial_VF <- dataset2_distritos.mineria.superficial[!is.na(dataset2_distritos.mineria.superficial$CANON.MINERO),]
-                 View(dataset2_distritos.mineria.superficial_VF)
-                 summary(dataset2_distritos.mineria.superficial_VF)
+dataset2_VF <- dataset2[!is.na(dataset2$CANON.MINERO),]
+View(dataset2_VF)
+summary(dataset2_VF)
                  
-                #2.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
+#2.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
                  
-                        dim(dataset2_distritos.mineria.superficial)
-                        dim(dataset2_distritos.mineria.superficial_VF)
+dim(dataset2)
+dim(dataset2_VF)
 
 
-   #3.- dataset3_distritos no mineria superficial
+#3.- dataset3_distritos no mineria superficial
                         
-      str(dataset3_distritos.no.mineria.superficial)
-      summary(dataset3_distritos.no.mineria.superficial)
-      "Se identifica que hay 21 observaciones (distritos) que no cuentan con transferencias de canon minero. Asimismo, hay obs del la variable funcion, minería no metálica, refíneria y minería subterránea porque no todos los distritos tienen todos los métodos de explotación. "
+str(dataset3)
+summary(dataset3)
+"Se identifica que hay 21 observaciones (distritos) que no cuentan con transferencias de canon minero. Asimismo, hay obs del la variable funcion, minería no metálica, refíneria y minería subterránea porque no todos los distritos tienen todos los métodos de explotación. "
       
-      #Revisión de las obs que no cuentan con transferencias de canon minero.
+#Revisión de las obs que no cuentan con transferencias de canon minero.
           
-          #3.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
+#3.1.- Mostrar obs NA (Subset que recolecta los NA), para identificar cuáles son los distritos
               
-                  dataset3_distritos.no.mineria.superficial_evidencia <- dataset3_distritos.no.mineria.superficial[is.na(dataset3_distritos.no.mineria.superficial$CANON.MINERO), ]
-                  View(dataset3_distritos.no.mineria.superficial_evidencia)
-                "La lista de distritos está disponible en dataset3_distritos.no.mineria.superficial_evidencia"
+dataset3_evidencia <- dataset3[is.na(dataset3$CANON.MINERO), ]
+View(dataset3_evidencia)
+"La lista de distritos está disponible en dataset3_distritos.no.mineria.superficial_evidencia"
                 
-          #3.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
+#3.2.- Sabiendo cuáles son los distritos, se procede a eliminarlos. (El símbolo "!" excluye a lo seleccionado)
                 
-                 dataset3_distritos.no.mineria.superficial_VF <- dataset3_distritos.no.mineria.superficial[!is.na(dataset3_distritos.no.mineria.superficial$CANON.MINERO),]
-                 View(dataset3_distritos.no.mineria.superficial_VF)
-                 summary(dataset3_distritos.no.mineria.superficial_VF)
+dataset3_VF <- dataset3[!is.na(dataset3$CANON.MINERO),]
+View(dataset3_VF)
+summary(dataset3_VF)
                  
-                #3.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
+#3.2.1.- Comprobar si se eliminaron las obs (filas y columnas)
                  
-                        dim(dataset3_distritos.no.mineria.superficial)
-                        dim(dataset3_distritos.no.mineria.superficial_VF)
-                      
-                        
+dim(dataset3)
+dim(dataset3_VF)
+```
+
+
+```{r}
 #TRANSFORMANDO CANON MINERO DE SOLES A MILLONES DE SOLES
-     #1.- Dataset1
-          CANON.MINERO.M <- dataset1_distritos.extraccion.minera_VF$CANON.MINERO/1000000
-          dataset1_distritos.extraccion.minera_VF <- cbind(dataset1_distritos.extraccion.minera_VF, CANON.MINERO.M)
-            View(dataset1_distritos.extraccion.minera_VF)
+#1.- Dataset1
+CANON.MINERO.M <- dataset1_VF$CANON.MINERO/1000000
+dataset1_VF <- cbind(dataset1_VF, CANON.MINERO.M)
+View(dataset1_VF)
             
-     #2.- Dataset2
-          CANON.MINERO.M <- dataset2_distritos.mineria.superficial_VF$CANON.MINERO/1000000
-          dataset2_distritos.mineria.superficial_VF <- cbind(dataset2_distritos.mineria.superficial_VF, CANON.MINERO.M)
-            View(dataset2_distritos.mineria.superficial_VF)
+#2.- Dataset2
+CANON.MINERO.M <- dataset2_VF$CANON.MINERO/1000000
+dataset2_VF <- cbind(dataset2_VF, CANON.MINERO.M)
+View(dataset2_VF)
 
             
-     #3.- Dataset3
-          CANON.MINERO.M <- dataset3_distritos.no.mineria.superficial_VF$CANON.MINERO/1000000
-          dataset3_distritos.no.mineria.superficial_VF <- cbind(dataset3_distritos.no.mineria.superficial_VF, CANON.MINERO.M)
-            View(dataset3_distritos.no.mineria.superficial_VF)
-            
+#3.- Dataset3
+CANON.MINERO.M <- dataset3_VF$CANON.MINERO/1000000
+dataset3_VF <- cbind(dataset3_VF, CANON.MINERO.M)
+View(dataset3_VF)
+```
+
+
+```{r}
 #CREANDO UNA NUEVA VARIABLE PARA CODIFICAR DEPARTAMENTOS POR REGIONES
-   #Dataset1
-    table(dataset1_distritos.extraccion.minera_VF$REGION)
+
+library(dplyr)
+#Dataset1
+table(dataset1_VF$REGION)
     
-    dataset1_distritos.extraccion.minera_VF$REGION_2 <- recode(dataset1_distritos.extraccion.minera_VF$REGION,
-                                                               "AMAZONAS" = "SELVA" , 
+dataset1_VF$DOMINIO <- recode(dataset1_VF$REGION,"AMAZONAS" = "SELVA" , 
                                                                "ANCASH" = "SIERRA",  
                                                                "APURIMAC" = "SIERRA",
                                                                "AREQUIPA" = "SIERRA" , 
@@ -143,12 +154,12 @@ View(dataset1)
                                                                "SAN MARTIN" = "SELVA" ,  
                                                                "TACNA" = "COSTA" , 
                                                                "TUMBES" = "COSTA")
-    View(dataset1_distritos.extraccion.minera_VF)
+View(dataset1_VF)
     
-    #Dataset2
-    table(dataset2_distritos.mineria.superficial_VF$REGION)
+#Dataset2
+table(dataset2_VF$REGION)
     
-    dataset2_distritos.mineria.superficial_VF$REGION_2 <- recode(dataset2_distritos.mineria.superficial_VF$REGION,
+dataset2_VF$DOMINIO <- recode(dataset2_VF$REGION,
                                                                "ANCASH" = "SIERRA",  
                                                                "APURIMAC" = "SIERRA", 
                                                                "AREQUIPA" = "SIERRA",
@@ -163,14 +174,14 @@ View(dataset1)
                                                                "PASCO" = "SIERRA" , 
                                                                "PUNO" = "SIERRA" , 
                                                                "TACNA" = "COSTA")
-    View(dataset2_distritos.mineria.superficial_VF)
-                                                               
+View(dataset2_VF)
+                                                            
             
-    #Dataset3
+#Dataset3
     
-     table(dataset3_distritos.no.mineria.superficial_VF$REGION)
+table(dataset3_VF$REGION)
     
-    dataset3_distritos.no.mineria.superficial_VF$REGION_2 <- recode(dataset3_distritos.no.mineria.superficial_VF$REGION,
+dataset3_VF$DOMINIO <- recode(dataset3_VF$REGION,
                                                                "AMAZONAS" = "SELVA" , 
                                                                "ANCASH" = "SIERRA", 
                                                                "AREQUIPA" = "SIERRA", 
@@ -190,7 +201,7 @@ View(dataset1)
                                                                "PUNO" = "SIERRA" ,
                                                                "SAN MARTIN" = "SELVA" , 
                                                                "TUMBES" = "COSTA")
-    View(dataset3_distritos.no.mineria.superficial_VF)
+    View(dataset3_VF)
     
     
 ```
@@ -202,17 +213,17 @@ View(dataset1)
 ##ESTADÍSTICA
   #1.- Mediana, media y moda
       # Dataset1
-        summary(dataset1_distritos.extraccion.minera_VF)
-        median(dataset1_distritos.extraccion.minera_VF$CANON.MINERO)
-        mean(dataset1_distritos.extraccion.minera_VF$CANON.MINERO)
+        summary(dataset1_VF)
+        median(dataset1_VF$CANON.MINERO)
+        mean(dataset1_VF$CANON.MINERO)
         
       # Dataset2
-        summary(dataset2_distritos.mineria.superficial_VF)
+        summary(dataset2_VF)
         
         
         
       # Dataset3
-        summary(dataset3_distritos.no.mineria.superficial_VF)
+        summary(dataset3_VF)
 
 
 ```
@@ -227,81 +238,86 @@ library(gapminder)
 library(dplyr)
 library(ggplot2)
 library(hrbrthemes)
-library(viridis)
 library(viridisLite)
+library(viridis)
+
 
 
 #DATASET1
-          #1.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
-        ggplot(dataset1_distritos.extraccion.minera_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=REGION_2)) + geom_bar(stat = "identity")   
+#1.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
+ggplot(dataset1_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=DOMINIO)) + geom_bar(stat = "identity")   
    
-          #1.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
-          dataset1_distritos.extraccion.minera_VF %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION_2)) +
-            geom_point(size=1) +
-            #geom_text(aes(label=DISTRITO), 
-                       #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)
+#1.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
+dataset1_VF %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=DOMINIO)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)
           
           
-          "Duda: Si todos los distritos son productores, ¿Por qué hay algunos que reciben cifras exorbitantes?"
-          #1.3.1 Evolución de las transferencias de la sierra, por región
-          dataset1_distritos.extraccion.minera_VF %>%
-            filter(REGION_2=="SIERRA") %>%
-            ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=REGION)) + geom_bar(stat = "identity")
-          
-          "Ancash, departamento que más transferencias ha recibido durante todo el periodo"
+"Duda: Si todos los distritos son productores, ¿Por qué hay algunos que reciben cifras exorbitantes?"
 
-          #1.3.2 Evolución de las transferencias de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-            filter(REGION=="ANCASH") %>%
-            ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
+#1.3 Evolución de las trasnferencias por región
+dataset1_VF %>%
+ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=REGION)) + geom_bar(stat = "identity")
+            
+"¿Cómo se podría ordenar de mayor a menor?"
+           
+#El previo gráfico permite identificar que Áncash, Cajamarca y Moquegua son los departamentos que mayores transferencias reciben. Ahora se verá cada departamento a detalle:
+
+           
+#ÁNCASH
+
+#1.3.1 Evolución de las transferencias de Ancash, según distrito
+dataset1_VF %>%
+  filter(REGION=="ANCASH") %>%
+  ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
           
-          #1.3.3 Evolución de las transferencias e IDH de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-             filter(REGION_2=="SIERRA") %>%
-             filter(REGION=="ANCASH") %>%
-        ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
+#1.3.2 Evolución de las transferencias e IDH de Ancash, según distrito
+dataset1_VF %>%
+   filter(REGION=="ANCASH") %>%
+   ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
+   geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
         
           
-          "Cajamarca, segundo departamento con mayores transferencias"
+#CAJAMARCA
           
-            #1.3.2 Evolución de las transferencias de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-            filter(REGION=="CAJAMARCA") %>%
-            ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
+#1.3.3 Evolución de las transferencias de Ancash, según distrito
+dataset1_VF %>%
+  filter(REGION=="CAJAMARCA") %>%
+  ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
           
-          #1.3.3 Evolución de las transferencias e IDH de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-             filter(REGION=="CAJAMARCA") %>%
-        ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)       
+#1.3.4 Evolución de las transferencias e IDH de Ancash, según distrito
+dataset1_VF %>%
+  filter(REGION=="CAJAMARCA") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)       
           
           
-           "Moquegua, segundo departamento con mayores transferencias"
+#MOQUEGUA
            
-           #1.3.2 Evolución de las transferencias de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-            filter(REGION=="MOQUEGUA") %>%
-            ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
+#1.3.2 Evolución de las transferencias de Ancash, según distrito
+dataset1_VF %>%
+  filter(REGION=="MOQUEGUA") %>%
+  ggplot(aes(x=AÑO, y=CANON.MINERO.M, fill=DISTRITO)) + geom_bar(stat = "identity")
           
-          #1.3.3 Evolución de las transferencias e IDH de Ancash, según distrito
-          dataset1_distritos.extraccion.minera_VF %>%
-             filter(REGION=="MOQUEGUA") %>%
-        ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
+#1.3.3 Evolución de las transferencias e IDH de Ancash, según distrito
+dataset1_VF %>%
+  filter(REGION=="MOQUEGUA") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=DISTRITO, color=DISTRITO, size=CANON.MINERO.M)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
            
+#EVOLUCIÓN DEL IDH Y CANON MINERO          
+#1.4 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
           
-          #1.4 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
-          
-          dataset1_distritos.extraccion.minera_VF %>%
-        ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, color=REGION, size=CANON.MINERO.M)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
+dataset1_VF %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, color=REGION, size=CANON.MINERO.M)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
         
         
 ```
@@ -310,27 +326,27 @@ DATASET1: Lista de distritos en los que se realizó algúna actividad de extracc
 COMENTARIOS
 - El dominio Sierra es el que mayores transferencias recibió durante todo el periodo. Ello no sorprende porque en dicho dominio están empresas como Antamina, Cerro Verde, mientras que en la Costa está Southern. Por otro lado, la razón de la "ausencia" de la Selva es porque sus actividades están relacionadas a los Hidrocarburos. (Selva = Minería no metáliCa, revisar valorización porque se presume los precios y/o producción sean menores)   
 
-- El gráfico scatterplot evidencia que, de la lista de distritos que realizan alguna actividad minera, la gran mayoría se concentra en aquellos que reciben menos por el canon minero. Sin embargo, existen ciertos distritos que reciben grandes cantidades. Ello permite visualizar el esquema desigual de distribución, pues San Marcos - Áncash (Minería superficial) recibió más de 200 millones de soles en el 2007, mientras que Manuel Anatonio Mesones Muro (Lambayeque) recibió 2.9 soles, en el mismo año. (Valorización de la producción según método de explotación).
+- El gráfico scatterplot evidencia que, de la lista de distritos que realizan alguna actividad minera, la gran mayoría se concentra en aquellos que reciben menos por el canon minero. Sin embargo, existen ciertos distritos que reciben grandes cantidades. Ello permite visualizar el esquema desigual de distribución: p.e. San Marcos - Áncash (Minería superficial) recibió más de 200 millones de soles en el 2007, mientras que Manuel Anatonio Mesones Muro - Lambayeque (Minería no metálica) recibió 2.9 soles, en el mismo año. (Valorización de la producción según método de explotación).
 
-- Si todos los distritos son considerados productores por qué hay algunos que reciben cifras exorbitantes.
-  Ancash es el departamento más transferencias ha recibido en el dominio de la sierra, si se observa a sus distritos se evidencia lo siguiente:
-    - El distrito que más transferencias recibió fue San Marcos (Minería Superficial) y el que menos recibió fue Parihuanca (Minería no metálica). Ello llevaría a pensar que los métodos de explotación podrían ser la razón de la diferencia pues minería superficial extrae minerales como cobre, molibdeno, zinc, etc. mientras que en no metálica  está calcita. (Valorización de la producción según método de explotación). En cuanto al IDH, si bien durante un breve periodo tenían cifras similares, a partir del 2012, San Marcos incrementa su IDH de manera considerable. (Qué incrementa el IDH, ingresos, años de educación, esperanza de vida)
-    - Si se compara distritos de un mismo método de explotación, sería Jangas y San Marcos. En dicho caso la diferencia recaría en el tamaño de la empresa, pues es Barrick Misquichilca y Antamina. 
+- Si todos los distritos son considerados productores por qué hay algunos que reciben cifras exorbitantes, para ver eso a detalle se eligieron los 3 departmanentos que recibieron en todo el perido.
 
-- Si se observa el segundo departamento con mayores transferencias, Cajamarca, se ve lo siguiente:
-    - Es Cajamarca (Minería superficial) el distrito que más transferencias recibe.Asimismo, dentro de dicho distrito está Yanacocha extrayendo oro y cobre. Mientras que Sexi (Minería no metálica) es la que menos recibe. En el distrito mencionado radica Cementos Pcasmayo extrayendo puzolana. En cuanto al IDH, durante un tiempo hubo una brecha en ambas cifras. En el 2017, pese a la gran diferencia en el monto transferido, ambos distritos tuvieron casi el mismo IDH. 
+-Áncash es el departamento que más transferencias ha recibido, si se observa a sus distritos se evidencia lo siguiente:
+    - El distrito que más transferencias recibió fue San Marcos (Minería Superficial) y el que menos recibió fue Parihuanca (Minería no metálica). Ello llevaría a pensar que los métodos de explotación podrían ser la razón de la diferencia pues minería superficial extrae minerales como cobre, molibdeno, zinc, etc. mientras que en no metálica calcita. (Valorización de la producción según método de explotación). En cuanto al IDH, si bien durante un breve periodo tenían cifras similares, a partir del 2012, San Marcos incrementa su IDH de manera considerable. (Qué incrementa el IDH, ingresos, años de educación, esperanza de vida)
+    - Si se comparan distritos de un mismo método de explotación, sería Jangas y San Marcos. En dicho caso la diferencia recaería en el tamaño de la empresa, la cuales son Barrick Misquichilca y Antamina. 
+
+- Cajamarca, segundo departamento con mayores transferencias, muestra lo siguiente:
+    - Es Cajamarca (Minería superficial) el distrito que más transferencias recibe.Asimismo, dentro de dicho distrito está Yanacocha extrayendo oro y cobre. Mientras que Sexi (Minería no metálica) es la que menos recibe. En el distrito mencionado radica Cementos Pacassmayo extrayendo puzolana. En cuanto al IDH, durante un tiempo hubo una brecha en ambas cifras. En el 2017, pese a la gran diferencia en el monto transferido, ambos distritos tuvieron casi el mismo IDH. 
     - Es interesante ver cómo mejoró Sexi, pues pasó de 0.26 (2004) a 0.53 (2020). Otro caso similar es Yonan, distrito que tiene minería no metálica, pese a no recibir muchas transferencias el crecimiento del índice estuvo en paralelo a Cajamarca. 
-    - Cautiluc (minería superficial) que extrae oro y plata, no recibe muchas transferencias. Este distrito resalta porque durante el periodo considerado el IDH solo mejoró un 10%.
+    - Cautiluc (minería superficial) que extrae oro y plata, tampoco recibe muchas transferencias y resalta porque durante el periodo considerado el IDH solo mejoró un 10%. Es el único distrito que tuvo ese desempeño en el departamento.
     
-- Moquegua , de la costa, es el tercer departamento con mas transferencias recibidas durante el periodo considerado, muestra lo siguiente: 
+- Moquegua, costa, es el tercer departamento con mas transferencias recibidas durante el periodo considerado, muestra lo siguiente: 
   - En el caso de las transferencias, es Torata (minería superficial) el que abarca casi todas las transferencias recibidas en dicho departamento. En contraste, Pacocha (fundición y refinería) es el que menos transferencias recibió. 
   - En cuanto al IDH, Pacocha tuvo un índice que superó a Torata durante todo el periodo. Cabe resaltar que ambos están por encima de la mediana del IDH nacional.
 
 
-- Si es que se ve el IDH y el canon, resalta que Pacocha (Moquegua) fue el distrito que tuvo mejores resultados, resalta que dentro de ese distrito esté Southern con fundición y refinería con el cobre, plata y oro. En contraste, Usquil (La Libertad) fue el que se mantuvo al final, la titular es Barrick Misquichilca con minería superficial, extrayendo el oro y plata. 
+- Si es que se ve el IDH y el canon de todos los distritos considerados, resalta que Pacocha (Moquegua) fue el distrito que tuvo mejores resultados, resalta que dentro de ese distrito esté Southern con fundición y refinería con el cobre, plata y oro. En contraste, Usquil (La Libertad) fue el que se mantuvo al final, la titular es Barrick Misquichilca con minería superficial, extrayendo el oro y plata. 
 
-- De los 110 distritos considerados, solo 36 tienen un IDH que está por encima del promedio nacional. (Mediana)
-
+- De los 110 distritos considerados, solo 36 tienen un IDH que está por encima del nacional. 
 
 - Las razones de la desigualdad en las transferencias son el método de explotación y el tamaño de la empresa.
  
@@ -348,31 +364,29 @@ library(viridisLite)
 
 
 #DATASET2
-      #MOSTRAR QUE LOS DISTRITOS CONSIDERADOS SOLO TIENEN UN MÉTODO DE EXPLOTACIÓN Y NO 
-       "CUADRO QUE MUESTRE QUE LA PARCOY Y MOROCOCHA SON LOS ÚNICOS DISTRITOS QUE TIENEN DOS MÉTODOS DE EXPLOTACIÓN."
-       "CUADRO QUE MUESTRE LAS TRASNFERENCIAS RECIBIDAS POR AMBOS DISTRITOS EN COMPARACIÓN CON EL TOTAL"
+#MOSTRAR QUE LOS DISTRITOS CONSIDERADOS SOLO TIENEN UN MÉTODO DE EXPLOTACIÓN Y NO 
+"CUADRO QUE MUESTRE QUE LA PARCOY Y MOROCOCHA SON LOS ÚNICOS DISTRITOS QUE TIENEN DOS MÉTODOS DE EXPLOTACIÓN."
+"CUADRO QUE MUESTRE LAS TRASNFERENCIAS RECIBIDAS POR AMBOS DISTRITOS EN COMPARACIÓN CON EL TOTAL"
        
        
-        #2.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
-        ggplot(dataset2_distritos.mineria.superficial_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=REGION_2)) + geom_bar(stat = "identity")
+#2.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
+ggplot(dataset2_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=DOMINIO)) + geom_bar(stat = "identity")
 
       
-        #2.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
-          dataset2_distritos.mineria.superficial_VF %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION_2)) +
-            geom_point(size=1) +
-            #geom_text(aes(label=DISTRITO), 
-                       #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)
+ #2.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
+dataset2_VF %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=DOMINIO)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)
           
 
-        #2.3 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
-          
-           dataset2_distritos.mineria.superficial_VF %>%
-
-        ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, color=REGION_2, size=CANON.MINERO.M)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
+#2.3 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
+dataset2_VF %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, color=DOMINIO, size=CANON.MINERO.M)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
          
 
 
@@ -382,7 +396,7 @@ library(viridisLite)
 DATASET2: 
 COMENTARIOS: Lista de distritos que realizan minería superficial.
 
-- De los 36 distritos, solo 2, Parcoy (La libertad) y Morococha (Junin) tienen dos métodos de extracción, minería subterránea y superficial. Ambas aportan 2% , en promedio, durante todo el periodo. Como el aporte es mínimo, no hay problema de considerar a dichos distritos porque no se generará mucha duplicidad en las cifras cuando se evalúe el otro método de explotación.
+- De los 36 distritos, solo 2, Parcoy (La libertad) y Morococha (Junin) tienen dos métodos de extracción, minería subterránea y superficial. Ambas aportan 2% , en promedio, durante todo el periodo. Como el aporte es mínimo, no hay problema de considerarlos  porque no se generará mucha duplicidad en las cifras (transferencias) cuando se evalúen los métodos por separado.
 
 - En principio, se podría afirmar que de todos los métodos de explotación minera el que trae mayores transferencias es la minería superficial. Durante todo el periodo, en promedio, fue el 75% de las transferencias mineras que incluyen a todos los métodos de explotación minera.  
 
@@ -393,11 +407,10 @@ COMENTARIOS: Lista de distritos que realizan minería superficial.
 - El distrito que mayores transferencias recibió fue San Marcos (Ancash).
 
 - Cuando se observa la relación IDH/canon resalta que:
-    - Pese a que, San Marcos (Ancash) es el que más transferencias recibe, es el decimosexto en la clasificación del IDH, promedio del periodo . Mientras que Ilabaya (Tacna), segundo con mayores transferencias, es el que lidera dicha clasificación.
+    - Pese a que, San Marcos (Ancash) es el que más transferencias recibe, es el decimosexto en la clasificación del IDH, mediana del periodo . Mientras que Ilabaya (Tacna), segundo con mayores transferencias, es el que lidera dicha clasificación.
     
 
 - Solo 9 distritos superan el IDH nacional. 
-
 
 
 ```{r}
@@ -412,102 +425,92 @@ library(viridisLite)
 
 #DATASET3
 
-      #MOSTRAR QUE LOS DISTRITOS CONSIDERADOS SOLO TIENEN UN MÉTODO DE EXPLOTACIÓN Y NO 
-       "CUADRO QUE MUESTRE QUE LA PARCOY Y MOROCOCHA SON LOS ÚNICOS DISTRITOS QUE TIENEN DOS MÉTODOS DE EXPLOTACIÓN."
-       "CUADRO QUE MUESTRE LAS TRASNFERENCIAS RECIBIDAS POR AMBOS DISTRITOS EN COMPARACIÓN CON EL TOTAL"
+#MOSTRAR QUE LOS DISTRITOS CONSIDERADOS SOLO TIENEN UN MÉTODO DE EXPLOTACIÓN Y NO 
+"CUADRO QUE MUESTRE QUE LA PARCOY Y MOROCOCHA SON LOS ÚNICOS DISTRITOS QUE TIENEN DOS MÉTODOS DE EXPLOTACIÓN."
+"CUADRO QUE MUESTRE LAS TRASNFERENCIAS RECIBIDAS POR AMBOS DISTRITOS EN COMPARACIÓN CON EL TOTAL"
        
-        #2.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
-        ggplot(dataset3_distritos.no.mineria.superficial_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=REGION_2)) + geom_bar(stat = "identity") 
+#2.1 Evolución de las transferencias de canon minero según dominio natural - BARPLOT
+  ggplot(dataset3_VF, aes(x=AÑO, y=CANON.MINERO.M, fill=DOMINIO)) + geom_bar(stat = "identity") 
         
                 
-        #2.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
-          dataset3_distritos.no.mineria.superficial_VF %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
-            geom_point(size=1) +
-            #geom_text(aes(label=DISTRITO), 
-                       #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)
+#2.2 Dispersión de IDH - Canon minero por año, con etiquetas del distrito - SCATTER SMALL MULTIPLES
+dataset3_VF %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)
           
 
-        #2.3 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
-          
-           dataset2_distritos.mineria.superficial_VF %>%
-        ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
-          geom_point() #+
-          #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
+#2.3 Dispersión de IDH - canon por año, según UBIGEO - SCATTER POINT
+dataset2_VF %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)  
 
 
-     
-        #2.4 MINERÍA NO METÁLICA
+#2.4 MINERÍA NO METÁLICA
+dataset3_VF %>%
+  filter(MINERIA.NO.METALICA=="1") %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)           
+           
+dataset3_VF %>%
+  filter(MINERIA.NO.METALICA=="1") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T) 
 
-           dataset3_distritos.no.mineria.superficial_VF %>%
-             filter(MINERIA.NO.METALICA=="1") %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
-            geom_point(size=1) +
-            geom_text(aes(label=DISTRITO), 
-                       nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)           
-           
-           
-           
-           dataset3_distritos.no.mineria.superficial_VF %>%
-                filter(MINERIA.NO.METALICA=="1") %>%
-                ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
-                geom_point() #+
-                #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T) 
             
-        #2.5 MINERÍA SUBTERRÁNEA
+#2.5 MINERÍA SUBTERRÁNEA
+dataset3_VF %>%
+  filter(MINERIA.SUBTERRANEA=="1") %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)           
+           
+dataset3_VF %>%
+  filter(MINERIA.SUBTERRANEA=="1") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
 
-           dataset3_distritos.no.mineria.superficial_VF %>%
-             filter(MINERIA.SUBTERRANEA=="1") %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
-            geom_point(size=1) +
-            geom_text(aes(label=DISTRITO), 
-                       nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)           
-           
-           
-           
-           dataset3_distritos.no.mineria.superficial_VF %>%
-                filter(MINERIA.SUBTERRANEA=="1") %>%
-                ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
-                geom_point() #+
-                #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
 
-          #2.6 REFINERÍA
+#2.6 REFINERÍA
+dataset3_VF %>%
+  filter(REFINERIA=="1") %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)           
+           
+dataset3_VF %>%
+  filter(REFINERIA=="1") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
 
-           dataset3_distritos.no.mineria.superficial_VF %>%
-             filter(REFINERIA=="1") %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
-            geom_point(size=1) +
-            geom_text(aes(label=DISTRITO), 
-                       nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)           
-           
-           
-           
-           dataset3_distritos.no.mineria.superficial_VF %>%
-                filter(REFINERIA=="1") %>%
-                ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
-                geom_point() #+
-                #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
-          #2.7 FUNDICIÓN
 
-           dataset3_distritos.no.mineria.superficial_VF %>%
-             filter(FUNDICION=="1") %>%
-            ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
-            geom_point(size=1) +
-            geom_text(aes(label=DISTRITO), 
-                       nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
-             facet_wrap(~AÑO)           
+#2.7 FUNDICIÓN
+dataset3_VF %>%
+  filter(FUNDICION=="1") %>%
+  ggplot(aes(x=CANON.MINERO.M, y=IDH, color=REGION)) +
+  geom_point(size=1) +
+  #geom_text(aes(label=DISTRITO), 
+  #nudge_x = 0.02, nudge_y = 0.02, check_overlap =T, size = 1.5)+
+  facet_wrap(~AÑO)           
            
-           
-           
-           dataset3_distritos.no.mineria.superficial_VF %>%
-                filter(FUNDICION=="1") %>%
-                ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
-                geom_point() #+
-                #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
+dataset3_VF %>%
+  filter(FUNDICION=="1") %>%
+  ggplot(aes(x=AÑO, y=IDH, fill=UBIGEO, size=CANON.MINERO.M, color=REGION)) +
+  geom_point() #+
+  #geom_text(aes(label=UBIGEO), nudge_x = 0.02, nudge_y = 0.02, check_overlap =T)
            
 ```
 DATASET3: 
@@ -530,8 +533,19 @@ COMENTARIOS: Lista de distritos que no realizan minería superficial.
 COMENTARIOS POR MÉTODO DE EXPLOTACIÓN:
   
   Minería no metálica:
+    - Hay concentración en los distritos que reciben transferencias.
     - Los distritos de Uchimayo (hormigón) y Yura (caliza, Pizarra, Puzolana, Yeso), ambos de Arequipa, recibieron mayores transferencias.No serán los que tuvieron mejores resultados, pero la tendencia del IDH es positiva.
+    
+  Minería subterránea:
+    - Las transferencias de canon ya no están concentradas en una sola área. 
 
+  Refinería:
+  
+    - Las transferencias de canon ya no están concentradas en una sola área. 
+
+  Fundición:
+  
+    - Las transferencias de canon ya no están concentradas en una sola área.   
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
