@@ -17,7 +17,8 @@ output: html_document
 
 ```{r}
 library(readr)
-#Importar datos
+
+#IMPORTAR DATOS
 
 dataset1 <- read.csv(file="dataset1_distritos extraccion minera.csv", sep =";" , header = TRUE)
 
@@ -27,7 +28,8 @@ dataset3 <- read.csv(file="dataset3_distritos no mineria superficial.csv", sep =
 
 
 
-#Revisión de variables
+#REVISIÓN DE VARIABLES
+
 #1.- dataset1
 
 str(dataset1)
